@@ -1,0 +1,39 @@
+convert_devise_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ConvertDeviseBundle:Default:index }
+    
+convert_devise_accueil:
+    path:     /accueil
+    defaults: { _controller: ConvertDeviseBundle:Devise:index }
+    
+convert_devise_admin_compte:
+    path:     /compte
+    defaults: { _controller: ConvertDeviseBundle:Devise:compte }
+       
+convert_devise_admin:
+    path:     /admin
+    defaults: { _controller: ConvertDeviseBundle:Devise:admin }
+convert_devise_admin_add:
+    path:     /admin/ajouter
+    defaults: { _controller: ConvertDeviseBundle:Devise:ajouter }
+convert_devise_admin_get:
+    path:     /admin/voir
+    defaults: { _controller: ConvertDeviseBundle:Devise:voir }
+convert_devise_admin_etat:
+    path:     /admin/etat
+    defaults: { _controller: ConvertDeviseBundle:Devise:etat }
+convert_devise_convert:
+    path:     /convert
+    defaults: { _controller: ConvertDeviseBundle:Devise:historique }
+convert_devise_admin_voirhistorique:
+    path:     /admin/voirhistorique
+    defaults: { _controller: ConvertDeviseBundle:Devise:voirhistorique }
+convert_devise_admin_param:
+    path:     /admin/param
+    defaults: { _controller: ConvertDeviseBundle:Devise:param }
+convert_devise_admin_courbe:
+    path:     /admin/courbe
+    defaults: { _controller: ConvertDeviseBundle:Devise:voircourbe }
+convert_devise_admin_mail:
+    path:     /admin/mail
+    defaults: { _controller: ConvertDeviseBundle:Devise:mail }

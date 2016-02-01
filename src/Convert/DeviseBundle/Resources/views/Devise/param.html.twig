@@ -1,0 +1,31 @@
+
+{% extends "ConvertDeviseBundle::layoutAdmin.html.twig" %}
+
+{% block title %}
+  Lecture d'un article - {{ parent() }}
+{% endblock %}
+
+{% block devise_body %}
+ <div class="container">
+      <div class="row center-block">
+        
+            <br>  <br>  <br>  <br>  <br>
+        <div class="col-lg-4 col-lg-offset-4"> 
+  <form name="login-form" class="login-form" action="{{ path('convert_devise_admin_param')}}" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                               Durée <input type="text"    id="duree" name="_duree"  required="required"  class="form-control" value="10" onfocus="this.value=''" />
+                                </div>
+                                 <div class="form-group">
+                               Nombre de demande  <input type="text" id="nbmax" name="_nbmax"  required="required"  class="form-control" value="10" onfocus="this.value=''" />
+                                </div>
+                                
+                                <!-- Change this to a button or input when using this as a form -->
+                              <input type="submit" name="submit" value="Valider" class="btn btn-lg btn-success btn-block" />
+                              
+                            </fieldset>
+                        </form>
+        </div>
+      </div>
+ </div>
+    {% endblock %}

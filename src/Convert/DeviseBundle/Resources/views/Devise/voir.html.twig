@@ -1,0 +1,71 @@
+
+{% extends "ConvertDeviseBundle::layoutAdmin.html.twig" %}
+
+{% block title %}
+  Lecture d'un article - {{ parent() }}
+{% endblock %}
+
+{% block devise_body %}
+
+ <div class="col-lg-8 col-md-8 col-xs-12 col-lg-offset">
+           {% set i=0 %}  
+     
+     <div class="col-lg-3 col-md-4 col-xs-6 col-lg-offset-4 bg-success ">
+                           Devise
+     </div>
+                    
+      <div class="col-lg-3 col-md-4 col-xs-6 bg-success">
+                        Description
+     
+     </div>
+     <button class="bg-success">
+                         Etat Devise
+     
+     </button>
+         {% for devise in devise %}
+     
+      {% if devise.etat==true %}
+    
+     <div class="col-lg-3 col-md-4 col-xs-6 col-lg-offset-4 ">
+                             {{ devise.devise }}  
+     </div>
+                    
+      <div class="col-lg-3 col-md-4 col-xs-6 ">
+                         {{ devise.devisedesc }}
+     
+     </div>
+       <form action="{{ path('convert_devise_admin_etat')}}" method="post">
+       <input type="text" id="etat" hidden="false" name="_id"  value="{{ devise.id }}" >
+    
+      <button class="activer">
+         
+                        Desactiver
+            {% else %}
+            <div class="col-lg-3 col-md-4 col-xs-6 col-lg-offset-4 btn-danger ">
+                             {{ devise.devise }}  
+     </div>
+                    
+      <div class="col-lg-3 col-md-4 col-xs-6 bg-danger btn-danger">
+                         {{ devise.devisedesc }}
+     
+     </div>
+       <form action="{{ path('convert_devise_admin_etat')}}" method="post">
+       <input type="text" id="etat" hidden="false" name="_id"  value="{{ devise.id }}" >
+    
+      <button class="activer">
+         
+                        Activer
+              
+             {%endif %}
+     </button>
+       </form>
+     
+     
+             {% endfor %}
+                           
+                          
+                      
+
+ </div>
+ 
+{% endblock %}

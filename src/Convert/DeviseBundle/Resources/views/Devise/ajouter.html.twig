@@ -1,0 +1,23 @@
+
+{% extends "ConvertDeviseBundle::layoutAdmin.html.twig" %}
+
+{% block title %}
+ Ajouter - {{ parent() }}
+{% endblock %}
+
+{% block devise_body %}
+<div class="col-lg-4 col-lg-offset-4">
+  <h2>Ajoutr une devise</h2>
+</div>
+ <div class="col-lg-5 col-lg-offset-4">
+  <div class="well">
+  <form method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" />
+  </form>
+</div>
+ </div>
+ 
+
+ 
+{% endblock %}

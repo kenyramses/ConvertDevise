@@ -1,0 +1,4 @@
+services:
+#    convert_devise.example:
+#        class: Convert\DeviseBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

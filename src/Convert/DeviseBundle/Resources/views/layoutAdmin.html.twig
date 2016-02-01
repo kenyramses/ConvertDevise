@@ -1,0 +1,18 @@
+
+{% extends "::layoutAdmin.html.twig" %}
+
+{% block title %}
+  Site - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+ 
+
+  <hr>
+
+  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  {% block devise_body %}
+  {% endblock %}
+
+{% endblock %}

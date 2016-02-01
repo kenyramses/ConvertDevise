@@ -1,0 +1,47 @@
+
+{% extends "ConvertDeviseBundle::layout.html.twig" %}
+
+{% block deviselayout %}
+ 
+  <FORM id="currency-selector" action="{{ path('convert_devise_convert')}}" method="post">
+                   
+
+           <select class="panel panel-info" type="choice"  name="_source" id="source"  >
+                {% for devise in devise %}
+                {%if devise.etat %}
+                    <option value="{{ devise.devise }}">{{ devise.devisedesc }}</option>
+                     {%endif %}
+                 {% endfor %} 
+                </select>
+                <select class="panel panel-info" type="choice"  name="_cible" id="cible" >
+                     {% for devise in devise %}
+                     {%if devise.etat %}
+                    <option value="{{ devise.devise }}">{{ devise.devisedesc }}</option>
+                     {%endif %}
+                     {% endfor %}
+                   
+                </select>
+      <br> <br> <br> <br> <br>
+                <label>
+                 Montant
+                 </label>
+       <input  type="text" id="montant"  name="_montant"  >
+        <input type="submit" name="submit" value="Valider" class="btn btn-lg btn-success btn-block" />
+                             
+             </FORM>
+           {#  <div class="resultat">
+            <div class="source">1 EUR</div>
+              <div class="cible">1 EUR</div>
+               </div> 
+         #}
+ <div class="col-lg-2"> 
+               <div class="source">1 {{ source}}</div>
+              </div>
+               <div class="col-lg-2"> 
+               <div class="cible">{{ cour}} {{ cible}}</div>
+               </div>            
+                <div class="col-lg-2 col-lg-offset-2"> 
+               <div class="total">{{ montant }} {{ source}}  vaut {{ cour*montant }} {{ cible}}</div>
+                </div>
+  
+{% endblock %}

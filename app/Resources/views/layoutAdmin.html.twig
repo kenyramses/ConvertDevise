@@ -1,0 +1,140 @@
+ <html>
+    <head>
+        {%block stylsheet%}
+        <link rel="stylesheet"  href="{{asset('bootstrap/css/bootstrap.min.css')}}" />
+         <link rel="stylesheet"  href="{{asset('bootstrap/css/style.css')}}" />
+         {%endblock%}
+        <title>Accueil</title>
+    </head>
+    <body> 
+
+<div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header col-lg-10">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href=""> Admin</a>
+            </div>
+            <!-- /.navbar-header -->
+
+           
+            <!-- /.navbar-top-links -->
+            <div class="navbar nav-justified col-lg-6 col-lg-pull-2">
+                   <ul class="navbar collapse navbar-collapse  nav-tabs navbar-top-links navbar-right col-lg-10">
+                       
+                       
+                       <li class="btn-info well"><a href="{{ path('convert_devise_admin_add')}}"><span class="glyphicon glyphicon-edit"></span>Ajouter une devise</a></li>
+                       <li class="btn-info well"><a href="{{ path('convert_devise_admin_get')}}"><span class="glyphicon glyphicon-euro"></span>Voir devise disponible</a></li>
+                        <li class="btn-info well">
+                            <a href="{{ path('convert_devise_admin_voirhistorique')}}"><span class="glyphicon glyphicon-calendar"></span> Voir l'historique</a>
+                           
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li class="btn-info well">
+                            <a class="courbe"><span class="glyphicon glyphicon-signal"></span> Voir Courbe</a>
+                           
+                            <!-- /.nav-second-level -->
+                        </li>
+                         <li class="btn-default well"><a href="{{ path('convert_devise_admin_param')}}"><span class="glyphicon glyphicon-zoom-in"></span>Parametrage</a></li>
+                         <li class="btn-default well"><a href="{{ path('convert_devise_admin_capecha')}}"><span class="glyphicon glyphicon-zoom-in"></span>Mail</a></li>
+                        
+                    </ul>
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <h1 class="page-header center-block">Tableau de bord</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+		  
+      <div id="chart"></div>
+	 <!-- /.row -->
+            <div class="row">
+               
+                   {% block body %}
+                   {% endblock %} 
+              
+            </div>   
+           
+        </div>
+        <!-- /#page-wrapper -->
+</div>
+   
+     {% block javascript %}
+       <script src="{{asset('bootstrap/js/jquery.js')}}"></script> 
+        
+      <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script> 
+      <script src="{{asset('bootstrap/js/ajax.js')}}"></script> 
+    
+      <script src="{{asset('bootstrap/js/jquery.devise-converter.js')}}"></script> 
+      <script src="http://code.highcharts.com/highcharts.js"></script>
+      <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+     
+      
+<script>
+  jQuery(document).ready(function() {
+ $(".courbe").on('click', function(){
+
+    
+	$("#chart").html("Chargement...");
+	
+	var options = {
+		chart: {
+			renderTo: 'chart',
+		},
+		credits: {
+			enabled: false
+		},
+		title: {
+			text: 'Cour/Click Overview',
+			x: -20
+		},
+		xAxis: {
+			categories: [{}]
+		},
+		tooltip: {
+            formatter: function() {
+                var s = '<b>'+ this.x +'</b>';
+                
+                $.each(this.points, function(i, point) {
+                    s += '<br/>'+point.series.name+': '+point.y;
+                });
+                
+                return s;
+            },
+            shared: true
+        },
+		series: [{},{}]
+	};
+	
+    $.ajax({
+		url: "http://localhost/ConvertDevise/web/admin/courbe",
+		data: 'show=impression',
+		type:'post',
+		dataType: "json",
+		success: function(data){
+                        console.log(data);
+			options.xAxis.categories = data.date[0];
+			options.series[0].name = 'Cour';
+			options.series[0].data = data.cour;
+			
+			var chart = new Highcharts.Chart(options);			
+		}
+	});
+});
+});
+      </script> 
+ {% endblock%}          
+     </body>
+</html>

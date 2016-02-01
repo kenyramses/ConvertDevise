@@ -1,0 +1,4 @@
+convert_devise:
+    resource: "@ConvertDeviseBundle/Resources/config/routing.yml"
+    prefix:   /
+

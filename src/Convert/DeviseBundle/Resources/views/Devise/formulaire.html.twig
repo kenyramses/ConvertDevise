@@ -1,0 +1,40 @@
+
+<html>
+    <head>
+        {%block stylsheet%}
+        <link rel="stylesheet"  href="{{asset('bootstrap/css/bootstrap.min.css')}}" />
+         <link rel="stylesheet"  href="{{asset('bootstrap/css/style.css')}}" />
+         {%endblock%}
+        <title>Accueil</title>
+    </head>
+    <body> 
+
+ <div class="container">
+      <div class="row center-block">
+        
+            <br>  <br>  <br>  <br>  <br>
+        <div class="col-lg-4 col-lg-offset-4"> 
+  <form name="login-form" class="login-form" action="{{ path('convert_devise_admin')}}" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                    <!--USERNAME--><input type="text" id="username" name="_username"  required="required"  class="form-control" value="Email" onfocus="this.value=''" /><!--END USERNAME-->
+                                </div>
+                                 <div class="form-group">
+                   <!--PASSWORD--><input type="password" id="password" name="_password" required="required" class="form-control" value="Mot de passe" onfocus="this.value=''" /><!--END PASSWORD-->
+ 
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                              <input type="submit" name="submit" value="Connexion" class="btn btn-lg btn-success btn-block" />
+                              
+                            </fieldset>
+                        </form>
+        </div>
+      </div>
+ </div>
+    </body>
+</html>
